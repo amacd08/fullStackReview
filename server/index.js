@@ -20,14 +20,14 @@ app.use(session({
 
 massive(CONNECTION_STRING).then((db) => {
     app.set('db',db)
-    console.log('database set!')
+    console.log('database set!', db.listTables())
     app.listen(SERVER_PORT, () => console.log(`listening on ${SERVER_PORT}`))
 })
 
 app.post('/auth/register', auth_ctrl.register)
 app.post('/auth/login', auth_ctrl.login)
 app.get('/auth/details', auth_ctrl.getDetails)
-
+app.get('/auth/logout', auth_ctrl.logOut)
 
 
 
